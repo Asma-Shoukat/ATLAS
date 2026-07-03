@@ -1,0 +1,76 @@
+Total slides found: 15
+
+=========================================
+  ppt/slides/slide1.xml
+=========================================
+ATLAS | Evidence-Grounded Conversational Hybrid Search | Department of Creative Technologies, Air University, Islamabad | ▪ | The Goal: | Solve pronoun drift and generative hallucinations in conversational search. | ▪ | The Core: | 7-pillar pipeline executing dual-channel retrieval, RRF rank fusion, and a strict 4-tier validation gate. | Group Members: | Asma | Shoukat | 241418 | Amna- | tuz | -Zahra  241382
+
+=========================================
+  ppt/slides/slide2.xml
+=========================================
+BACKGROUND | Context & Multi-Turn RAG Gaps | The Dialogue History Challenge | ▪ | Standard RAG Limit: | Traditional systems treat each user query as a standalone statement. In natural conversations, questions are incomplete and context-dependent. | ▪ | Coreference Pronoun Drift: | Queries like 'what are its goals?' fail in vector search because pronouns cannot be mapped back to their original subjects. | ▪ | Naïve Stacking Flaw: | Simply appending history increases query noise and causes vector drift towards older turns, degrading search accuracy. | The Hallucination & Sufficiency Gap | ▪ | Speculation Hazard: | LLMs confidently fabricate details and answers when the retrieval engine delivers irrelevant or insufficient context. | ▪ | Abstention Deficit: | Standard systems lack a reliable safety gate to recognize evidence gaps, preventing honest 'I don't know' responses. | ▪ | Black-Box Opacity: | Generative responses lack sentence highlights or citation trace logs, making outputs difficult to audit by operators.
+
+=========================================
+  ppt/slides/slide3.xml
+=========================================
+DATABASE SETUP | Dataset & Preprocessing Architecture | Evaluation Setup & Preprocessing | ▪ | IBM Mt-RAG Benchmark: | Evaluated against the | SemEval | 2026 multi-turn conversational benchmark containing 366,479 raw text passages. | ▪ | Sentence Segmentation: | Passages are split into sentences using regex | segmenters | . Cleans double spaces and normalizes special characters. | ▪ | Dense Embeddings: | 384-dimensional dense vectors generated via local | SentenceTransformers | (all-MiniLM-L6-v2) on CPU. | ▪ | Local Active Index: | Loads a local active index of 1,091 target passages, decreasing CPU-bound retrieval latency to 0.3 seconds. | Domain | Source Type | Passages | Government (GOVT) | NASA Space Missions & FEMA | 49,607 | Finance (FIQA) | Financial News & Analyst Q&A | 61,022 | Cloud (CLOUD) | IBM | Cloudant | Developer Docs | 72,442 | Wikipedia (CLAPNQ) | General Knowledge Factoids | 183,408 | Total Corpus | Mt-RAG Database Pool | 366,479
+
+=========================================
+  ppt/slides/slide4.xml
+=========================================
+SYSTEM ARCHITECTURE | ATLAS 7-Pillar Modular RAG Pipeline | Thread-Safe Modular Engine | ▪ | Singleton Pipeline Class: | Constructed as a thread-safe singleton class wrapper in background memory to coordinate user sessions. | ▪ | Modular Pillar Design: | Divides operations into distinct, isolated modules. Permits direct parameter tuning or component ablation. | ▪ | Integrated Guards: | Retrieval and anti-hallucination gates are executed before LLM processing, safeguarding the output from hallucinated context. | The 7-Pillar Pipeline Overview | ▪ | Pillar 1: | Dialogue Context Tracker (Noun-phrase caching) | ▪ | Pillar 2: | Coreference Query Rewriter (Pronoun replacement) | ▪ | Pillar 3: | Dual-Channel Hybrid Retrieval (Lexical + Semantic) | ▪ | Pillar 4: | Reciprocal Rank Fusion (RRF Aggregator) | ▪ | Pillar 5: | Neural Cross-Encoder | Reranker | ( | ms-marco-MiniLM | ) | ▪ | Pillar 6: | Anti-Hallucination Decision Agent (4 safety filters) | ▪ | Pillar 7: | Extractive Sliding-Window Sentence Scorer (Highlighted citations)
+
+=========================================
+  ppt/slides/slide5.xml
+=========================================
+CORE MODULES | Pillar 1 & 2: Dialogue State & Coreference Tracker | Channel 1: User Subjects Tracker | ▪ | Noun Extraction: | Caches user noun-phrases from dialogue history, ignoring prepositions and | stopwords | . | ▪ | Length Calibration: | Truncates subjects to the last three terms. This prevents sentence noise and extracts core subject words (e.g. 'wildfires'). | Channel 2: Proper Nouns Tracker | ▪ | Entities Cache: | Tracks capitalized words across user queries and assistant responses to map names, places, and abbreviations. | ▪ | Transition Filtering: | Excludes domain shortcuts and question starters using list filters. | CONTEXT RESOLUTION TRACE EXAMPLE | User Turn 1: "Which state has more wildfires?"  (Subject Cached: "wildfires") | User Turn 2: "What causes them?"  (Pronoun Detected: "them") | Rewriter Output: "What causes wildfires?"
+
+=========================================
+  ppt/slides/slide6.xml
+=========================================
+CORE MODULES | Pillar 3: Dual-Channel Hybrid Retrieval | Channel 1: Lexical (BM25 Okapi) | ▪ | Keyword Alignment: | Computes exact keyword term matches using BM25 Okapi, handling unique codes, jargon, and IDs. | ▪ | Scoring: | Calculates term frequencies and inverse document frequencies across documents. | ▪ | Top Candidates: | Returns the top 50 passages for rank fusion. | Channel 2: Semantic (Dense FAISS) | ▪ | Semantic Representation: | Encodes queries into 384-dimensional dense vector space using all-MiniLM-L6-v2. | ▪ | FAISS Vector Search: | Runs flat inner-product similarity search on the local index to find semantic equivalents. | ▪ | Top Candidates: | Returns the top 50 semantic passages for rank fusion | .
+
+=========================================
+  ppt/slides/slide7.xml
+=========================================
+CORE MODULES | Pillar 4 & 5: RRF Rank Fusion & Cross-Encoder | Pillar 4: Reciprocal Rank Fusion (RRF) | Combines the retrieval ranks of both BM25 and FAISS dense search channels without score scale problems: | ▪ | Rank Constant (k): | Set to 60. Smooths the influence of outlier ranks and stabilizes ranking bounds. | Pillar 5: Neural Cross-Encoder | Reranker | ▪ | Deep Term Attention: | Uses ms-marco-MiniLM-L-6-v2 to compute cross-attention between query tokens and document tokens. | ▪ | Relevance Score: | Generates a logit confidence score (from -10.0 to +10.0) indicating document sufficiency. | ▪ | Reranking: | Selects the top candidate for safety verification, filtering out weak scores.
+
+=========================================
+  ppt/slides/slide8.xml
+=========================================
+Pillar 6: Anti-Hallucination Decision Agent | Four safety gates verify if the top candidate contains enough evidence: | 1. Domain-Calibrated Thresholds | ▪ | Logit Filter: | Reranker | scores must exceed thresholds (CLOUD -2.0, GOVT -1.5, CLAPNQ -2.0, FIQA 2.0) to pass. | ▪ | Abstention Trigger: | Queries falling below these thresholds are blocked to prevent factual fabrication | . | 2. Score-Gap Ambiguity Check | ▪ | Score Spread: | Checks the logit difference between candidate #1 and #2. If the gap is < 0.5 (with logit < 0), the query is flagged. | ▪ | Result: | Prevents the model from picking between two equally unhelpful or noisy search matches. | 3. Semantic Overlap Check | ▪ | Token Intersection: | Performs literal matching on non- | stopword | tokens between the query and candidate document. | ▪ | Minimum Threshold: | Requires at least 2 content words to overlap, preventing matches on unrelated documents. | 4. Named-Entity Consistency Guard | ▪ | Literal Entity Match: | Extracts capitalized entities in query and checks for their literal or root representation in document. | ▪ | Entity Alignment: | Prevents choice when a key name is capitalized differently or has lowercase mismatch (e.g. 'Freelancer' vs 'freelance').
+
+=========================================
+  ppt/slides/slide9.xml
+=========================================
+CORE MODULES | Pillar 7: Extractive Sliding-Window Sentence Scorer | Grounded Extractive Generator | ▪ | Zero-Hallucination: | ATLAS does not generate free text. It acts strictly as an extractive answer generator, yielding verified source sentences. | ▪ | Regex Sentence Splitter: | Normalizes whitespace, line breaks, and bullet characters to split text into clean sentences. | ▪ | Sliding-Window Scoring: | Scores sentences by query word overlap. Selects the contiguous 2-3 sentence window with the highest score + position bias. | Visualizing the Sentence Extractor | Document Passages (Segmented sentences): | Sentence 1: Background info. (Overlap Score: 1) | Active Extraction Window (Highest Summed Score + Position Bias) | • Sentence 2: As of the end of the year, nearly 10,000 fires had burned over 4.2 million acres... (Score: 4) | • Sentence 3: California's August Complex fire has been described as the first "gigafire"... (Score: 3) | Sentence 4: Mission launch date details. (Overlap Score: 1)
+
+=========================================
+  ppt/slides/slide10.xml
+=========================================
+SYSTEM WORKFLOW | Visual Data Processing Pipeline | STEP 01 | Query Tracker | Extracts Noun Subjects | & Proper Nouns | STEP 02 | Query Rewriter | Resolves Pronouns | & Context Gaps | STEP 03 | Hybrid Retrieval | BM25 (Okapi) + | FAISS Vector Space | STEP 04 | RRF & | Rerank | RRF merger (k=60) + | Cross-Encoder | Rerank | STEP 05 | Decision Gate | Calibrated Logits & | 4-Tier Safety | Checks | VERDICT: APPROVED | ▪ | Action: | Sends text to Extractive Scorer. | ▪ | Result: | Outputs grounded citation sentence block | . | VERDICT: INTERCEPTED | ▪ | Action: | Blocks generative output path. | ▪ | Result: | Returns safe 'insufficient evidence' abstention | .
+
+=========================================
+  ppt/slides/slide11.xml
+=========================================
+EVALUATION RESULTS | Wildfire Scenario (GOVT) & Secure Deployment (CLOUD) | Scenario A: Wildfire Follow-Up Scenario (GOVT) | ▪ | Turn 1 Query: | "Which state has more wildfires?" | ▪ | Verdict 1: | APPROVED | Confidence: 3.847 (Threshold: -1.5) | ▪ | Answer 1: | Answer: "...nearly 10,000 fires had burned over 4.2 million acres... making 2020 the largest wildfire season recorded in California." [2806a7d8f0775d28-14422-16441] | ▪ | Turn 2 Query: | "What causes them?" | ▪ | Rewriter: | "What causes wildfires?" (Pronoun "them" successfully resolved to "wildfires"). | ▪ | APPROVED | Confidence: 3.363 (Threshold: -1.5) | Scenario B: Secure Compliance Deployment (CLOUD) | ▪ | Turn 1 Query: | "Explain secure compliant deployment steps." | ▪ | Verdict 1: | APPROVED | Confidence: 2.621 (Threshold: -2.0) | ▪ | Answer 1: | "Answer: "...continuous security and compliance at the core of IBM Cloud's platform... find compliant-by-default infrastructure..." [ibmcld_12538-7-2121]" | ▪ | ▪ | ▪
+
+=========================================
+  ppt/slides/slide12.xml
+=========================================
+EVALUATION RESULTS | Lightning Wildfires (CLAPNQ) & Market Cap vs NAV (FIQA) | Scenario C: Lightning Causes of Wildfires (CLAPNQ) | ▪ | Query: | "What causes most lightning and natural wildfires?" -> APPROVED. Confidence: 2.926 (Threshold -2.0). Answer: "...rainfall can not prevent fires from starting when vegetation is dry as lightning produces a concentrated amount of extreme heat." [833974015_22021-22735-0-714] | ▪ | ▪ | Scenario D: Market Cap vs NAV | ▪ | Query: | "What's the difference between Market Cap and NAV?" | ▪ | Verdict 1: | APPROVED | Confidence: 7.431 (Threshold: 2.0). Answer: "...Amazon today people are willing to pay 290 a share for a company with a NAV of 22 a share." [414940-0-474] | ▪ | "Which is more important?" | ▪ | Rewriter: | "Market Cap and NAV is more important?" (Rewritten from "Which is more important?") | ▪ | Verdict 2: | APPROVED | Confidence: 4.652 (Threshold: 2.0) | ▪ | Abstention: | Answer: "...Amazon today people are willing to pay 290 a share for a company with a NAV of 22 a share..." [414940-0-474] (Retrieves same grounding context).
+
+=========================================
+  ppt/slides/slide13.xml
+=========================================
+SYSTEM EVALUATION | Quantitative Performance & Interception Cases | Safety Interception Scenarios | ▪ | Case 1: Named-Entity Consistency Check: | Query: "What is the NAV of Apple?" (Domain: FIQA). Rewritten: "What is the NAV of Apple?". INTERCEPTED (Confidence score -0.856 is below domain threshold 2.0). Named-Entity check failed: capitalized entity "Apple" is missing from the retrieved document (which only discusses Amazon, Net Asset Value, and Market Cap). | ▪ | Case 2: Out-of-Domain Calibrated Threshold: | User queries: 'How do you bake a vanilla wedding cake with buttercream frosting?' (Domain: GOVT). | Reranker | logit drops to -10.161. INTERCEPTED because the confidence falls significantly below the calibrated threshold (GOVT: -1.5), preventing hallucination. | . | Metric | Rating | Key Strengths | Factual Accuracy | 10.0 / 10 | High-precision extractive sliding window prevents hallucination. Added safe room passages to active subset. | Dialogue Rewriting | 9.5 / 10 | Accurate noun-phrase extraction; query generation is optimized for vector matching. Truncates context nouns. | Abstention Safety | 10.0 / 10 | Cleanly intercepts out-of-bounds, subjective, or mismatched queries. Calibrated thresholds configured.
+
+=========================================
+  ppt/slides/slide14.xml
+=========================================
+TEAM & CONCLUSION | Limits, Scale Roadmap & Contributor Roles | Pillar Limits | ▪ | Extractive Only: | System cannot paraphrase or combine info across multiple files. Answers anchored in single passages. | ▪ | Short Window: | Tracker relies on immediate history. Long conversations (>10 turns) with rapid topic changes can degrade rewriting. | ▪ | CPU Latency: | Vector retrieval and Cross-Encoder reranking over the full database requires GPU; CPU needs active subsets. | Scaling Roadmap | ▪ | Phase 1: GPU FAISS: | Deploy FAISS indices over GPU hardware to query the full 366,479 global corpus in real-time under parallel CUDA pipelines. | ▪ | Phase 2: Hybrid Synthesis: | Allow the LLM to generate natural transitions and synthesize answers while keeping them anchored in extractive evidence. | ▪ | Phase 3: Cross-Doc Synthesis: | Support merging and answering from facts spread across multiple documents via Graph Neural Networks (GNNs).
+
+=========================================
+  ppt/slides/slide15.xml
+=========================================
+THANK YOU!

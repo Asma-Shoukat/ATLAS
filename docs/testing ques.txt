@@ -1,0 +1,3 @@
+How the system will behave now:
+Turn 2 ("What causes them?"): Instead of rewriting to "What causes regarding state and wildfires?", the system will perform a direct grammatical replacement and rewrite it to "What causes wildfires?".
+Turn 3 ("Tell me more"): Instead of getting confused by verbs/pronouns and rewriting to "Tell me more regarding causes them", the system will ignore the temporary verbs/pronouns and rewrite it to "Tell me more regarding wildfires", which successfully retrieves additional wildfire information instead of throwing a refusal error.

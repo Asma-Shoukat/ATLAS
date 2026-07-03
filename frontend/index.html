@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATLAS — Adaptive Trustworthy Language-Augmented Search</title>
+    <meta name="description" content="ATLAS is an adaptive, trustworthy language-augmented search system featuring hybrid retrieval, anti-hallucination guardrails, and evidence-grounded answers with full explainability.">
+    <!-- Google Fonts: Outfit for luxury headings, Inter for high-performance interface -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Premium Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Luxury Elite Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- BACKGROUND ANIMATED CANVAS -->
+    <canvas id="background-particles"></canvas>
+    
+    <!-- TOP DECORATIVE NEON LIGHT ORBS -->
+    <div class="radial-glow-orb glow-top-left"></div>
+    <div class="radial-glow-orb glow-bottom-right"></div>
+
+    <div class="app-container">
+        <!-- MAIN APP WORKSPACE: TRUE 3-SPLITS -->
+        <main class="app-workspace">
+            
+            <!-- ========================================== -->
+            <!-- SPLIT 1: LEFT SELECTOR (DEEP ONYX CHARCOAL)-->
+            <!-- ========================================== -->
+            <aside class="workspace-sidebar">
+                <!-- Branding -->
+                <div class="sidebar-branding">
+                    <div class="glow-pulse-dish">
+                        <i class="fa-solid fa-satellite-dish"></i>
+                    </div>
+                    <div class="branding-meta">
+                        <h1>ATLAS</h1>
+                        <span class="luxe-badge">ADAPTIVE TRUSTWORTHY SEARCH v2.0</span>
+                    </div>
+                </div>
+
+                <!-- Database Tenant Switchers in Sidebar -->
+                <div class="sidebar-section">
+                    <span class="sidebar-section-title"><i class="fa-solid fa-database"></i> DATABASE TENANTS</span>
+                    <nav class="sidebar-nav">
+                        <button class="domain-tab active" data-domain="GLOBAL">
+                            <i class="fa-solid fa-globe"></i>
+                            <span>Global</span>
+                            <span class="tab-border-glow"></span>
+                        </button>
+                        <button class="domain-tab" data-domain="CLOUD">
+                            <i class="fa-solid fa-cloud-bolt"></i>
+                            <span>Cloud Tech</span>
+                            <span class="tab-border-glow"></span>
+                        </button>
+                        <button class="domain-tab" data-domain="FIQA">
+                            <i class="fa-solid fa-hand-holding-dollar"></i>
+                            <span>Finance</span>
+                            <span class="tab-border-glow"></span>
+                        </button>
+                        <button class="domain-tab" data-domain="GOVT">
+                            <i class="fa-solid fa-landmark-dome"></i>
+                            <span>Government</span>
+                            <span class="tab-border-glow"></span>
+                        </button>
+                        <button class="domain-tab" data-domain="CLAPNQ">
+                            <i class="fa-solid fa-book-atlas"></i>
+                            <span>CLAPNQ</span>
+                            <span class="tab-border-glow"></span>
+                        </button>
+                    </nav>
+                </div>
+
+                <!-- Search Input Panel (Compact) -->
+                <div class="sidebar-search-container">
+                    <div class="search-input-wrapper">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" placeholder="Search dialogs & stress tests..." id="dialogue-search">
+                    </div>
+                </div>
+
+                <!-- Interactive Stress Test Threads (Compact) -->
+                <div class="sidebar-threads-container">
+                    <span class="sidebar-section-title">ACTIVE DIALOGUE SCENARIOS</span>
+                    <div class="chat-threads-list">
+                        
+                        <!-- Scenario 1: Topic Switch -->
+                        <div class="thread-item-card" id="trial-topic-switch">
+                            <div class="thread-avatar-box">
+                                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=80" alt="Aspen" class="thread-avatar">
+                                <span class="badge-tag govt">GOVT</span>
+                            </div>
+                            <div class="thread-meta">
+                                <div class="thread-header-row">
+                                    <span class="thread-title">Aspen Workman</span>
+                                    <span class="thread-time">12:38</span>
+                                </div>
+                                <span class="scenario-name">Topic Switch Turn</span>
+                                <p class="thread-snippet">"Which state has more wildfires?"</p>
+                            </div>
+                            <i class="fa-solid fa-chevron-right action-indicator"></i>
+                        </div>
+
+                        <!-- Scenario 2: Intent Attack -->
+                        <div class="thread-item-card" id="trial-intent-attack">
+                            <div class="thread-avatar-box">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=80" alt="Rhiel" class="thread-avatar">
+                                <span class="badge-tag danger">ATTACK</span>
+                            </div>
+                            <div class="thread-meta">
+                                <div class="thread-header-row">
+                                    <span class="thread-title">Rhiel Madsen</span>
+                                    <span class="thread-time">12:36</span>
+                                </div>
+                                <span class="scenario-name">Intent-Leak Attack</span>
+                                <p class="thread-snippet">"How do you bake a vanilla wedding cake..."</p>
+                            </div>
+                            <i class="fa-solid fa-chevron-right action-indicator"></i>
+                        </div>
+
+                        <!-- Scenario 3: Policy Spec -->
+                        <div class="thread-item-card" id="trial-policy-spec">
+                            <div class="thread-avatar-box">
+                                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=80" alt="Carla" class="thread-avatar">
+                                <span class="badge-tag policy">POLICY</span>
+                            </div>
+                            <div class="thread-meta">
+                                <div class="thread-header-row">
+                                    <span class="thread-title">Carla Dokidis</span>
+                                    <span class="thread-time">12:38</span>
+                                </div>
+                                <span class="scenario-name">Semantic Policy Spec</span>
+                                <p class="thread-snippet">"Why doesn't the government prevent people..."</p>
+                            </div>
+                            <i class="fa-solid fa-chevron-right action-indicator"></i>
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </aside>
+
+            <!-- ========================================== -->
+            <!-- SPLIT 2: CENTER PANEL (MAIN CONVERSATION)  -->
+            <!-- ========================================== -->
+            <section class="workspace-panel center-panel chat-panel">
+                <div class="panel-glare"></div>
+                <!-- Cosmic ambient glow orbs -->
+                <div class="cosmic-center-glow-1"></div>
+                <div class="cosmic-center-glow-2"></div>
+                <div class="cosmic-center-glow-3"></div>
+                
+                <!-- Center Header -->
+                <div class="center-header">
+                    <div class="nav-links">
+                        <span class="nav-link active">ATLAS Dialogue Console</span>
+                    </div>
+
+                </div>
+
+                <!-- Main Desktop Conversation Viewport -->
+                <div class="chat-viewport-desktop">
+                    <!-- HIGHLIGHTED DATASET TESTING TOKENS -->
+                    <div class="quick-benchmark-tokens">
+                        <span class="tokens-title"><i class="fa-solid fa-flask-vial"></i> DATASET TEST BENCHMARKS:</span>
+                        <div class="tokens-grid">
+                            <button class="token-pill" data-domain="GOVT" data-query="Which state has more wildfires?">
+                                <span class="pill-domain govt">GOVT</span>
+                                <span class="pill-text">Wildfires comparison?</span>
+                            </button>
+                            <button class="token-pill" data-domain="CLOUD" data-query="Explain secure compliant deployment steps.">
+                                <span class="pill-domain cloud">CLOUD</span>
+                                <span class="pill-text">Compliance steps?</span>
+                            </button>
+                            <button class="token-pill" data-domain="FIQA" data-query="What's the difference between Market Cap and NAV?">
+                                <span class="pill-domain fiqa">FIQA</span>
+                                <span class="pill-text">Market Cap vs NAV?</span>
+                            </button>
+                            <button class="token-pill" data-domain="CLAPNQ" data-query="What causes most lightning and natural wildfires?">
+                                <span class="pill-domain clapnq">CLAPNQ</span>
+                                <span class="pill-text">Wildfire lightning causes?</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="chat-messages" id="main-chat-messages-container">
+                        <!-- INTRO SYSTEM BUBBLE -->
+                        <div class="chat-message assistant">
+                            <div class="msg-avatar">
+                                <i class="fa-solid fa-robot"></i>
+                            </div>
+                            <div class="msg-card">
+                                <span class="avatar-title">ATLAS SEARCH SERVICE</span>
+                                <p>Welcome, Operator. I am <strong>ATLAS</strong> — your <strong>Adaptive Trustworthy Language-Augmented Search</strong> system, built for multi-domain hybrid retrieval with full evidence grounding and anti-hallucination safeguards.</p>
+                                <p>Ask a fact-based query and watch the 7-pillar pipeline decompose every step live: conversational understanding, query rewriting, hybrid BM25+Dense retrieval, decision agent verification, evidence extraction, citation highlighting, and full explainability.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Main Desktop Console Input -->
+                    <form class="chat-console-input-desktop" id="main-chat-form">
+                        <i class="fa-solid fa-sparkles console-prompt-icon"></i>
+                        <input type="text" id="main-chat-input-field" placeholder="Ask anything across all domains..." autocomplete="off" required>
+                        <button type="submit" class="console-send-btn-desktop">
+                            <span>Execute</span>
+                            <i class="fa-solid fa-arrow-up"></i>
+                        </button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- ========================================== -->
+            <!-- SPLIT 3: RIGHT PANEL (PIPELINE AUDITOR)    -->
+            <!-- ========================================== -->
+            <section class="workspace-panel pipeline-auditor">
+                <div class="panel-glare"></div>
+                <div class="panel-title-bar">
+                    <h2><i class="fa-solid fa-microscope"></i> ATLAS PIPELINE AUDITOR</h2>
+                    <span class="badge-status-pill">Telemetry ACTIVE</span>
+                </div>
+
+                <!-- Environment Telemetry Box -->
+                <div class="sidebar-status-box">
+                    <div class="status-header">
+                        <span>SYSTEM STATUS TELEMETRY</span>
+                        <div class="indicator-status-dot pulsing"></div>
+                    </div>
+                    <div class="status-value" id="system-status-text">BOOTING PIPELINE...</div>
+                    <div class="active-tenant-tag" id="active-domain-telemetry">GLOBAL ACTIVE</div>
+                </div>
+
+                <!-- GLOWING ENVIRONMENTAL PROFILE -->
+                <div class="telemetry-profile-card">
+                    <div class="telemetry-header">
+                        <span><i class="fa-solid fa-network-wired"></i> Compute Topology Profile</span>
+                        <span id="hardware-engine"><i class="fa-solid fa-microchip"></i> Engine: CPU</span>
+                    </div>
+                    <div class="telemetry-grid">
+                        <div class="grid-item">
+                            <span class="label">Passages Pool</span>
+                            <span class="val" id="stat-total-docs">366,479</span>
+                        </div>
+                        <div class="grid-item">
+                            <span class="label">Dimension Coordinate</span>
+                            <span class="val">384-D Space</span>
+                        </div>
+                        <div class="grid-item">
+                            <span class="label">Index Topology</span>
+                            <span class="val" id="stat-faiss-status">FAISS flat IP</span>
+                        </div>
+                        <div class="grid-item">
+                            <span class="label">Retrieval Mode</span>
+                            <span class="val">Hybrid BM25+Dense</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FLOW TIMELINE PATHWAYS -->
+                <div class="pipeline-trace-timeline" id="pipeline-trace-container">
+                    
+                    <!-- EMPTY LOGGER LOG STATE -->
+                    <div class="logger-empty-log" id="pipeline-empty-state">
+                        <div class="empty-glow-radar">
+                            <i class="fa-solid fa-wave-square"></i>
+                        </div>
+                        <p>Submit a turn to see the complete 7-pillar pipeline trace update in real time.</p>
+                    </div>
+
+                    <!-- STEP 1: CONVERSATIONAL CONTEXT + QUERY REWRITING (Pillars 1+2) -->
+                    <div class="trace-step-wrapper hide" id="step-coref">
+                        <div class="trace-badge">
+                            <div class="badge-inner">01</div>
+                            <div class="badge-line"></div>
+                        </div>
+                        <div class="trace-card glass-luxe">
+                            <div class="card-title-row">
+                                <h3><i class="fa-solid fa-spell-check"></i> Conversational Context + Query Rewriting</h3>
+                                <span class="badge-time" id="trace-time">12ms</span>
+                            </div>
+                            <div class="card-content">
+                                <div class="trace-query-diff">
+                                    <div class="query-block user-raw">
+                                        <span class="block-lbl">Original User Query:</span>
+                                        <p id="original-query-text">"Who founded it?"</p>
+                                    </div>
+                                    <div class="query-block rewriter-expanded">
+                                        <span class="block-lbl">Rewritten Standalone Query:</span>
+                                        <p id="rewritten-query-text">"Who founded Tesla?"</p>
+                                    </div>
+                                </div>
+                                <div class="context-resolution-meta" id="context-resolution-meta">
+                                    <!-- Populated by JS: entities found, pronouns detected -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- STEP 2: HYBRID RETRIEVAL (Pillar 3) -->
+                    <div class="trace-step-wrapper hide" id="step-retrieval">
+                        <div class="trace-badge">
+                            <div class="badge-inner">02</div>
+                            <div class="badge-line"></div>
+                        </div>
+                        <div class="trace-card glass-luxe">
+                            <div class="card-title-row">
+                                <h3><i class="fa-solid fa-list-check"></i> Hybrid Retrieval — BM25 + Dense + RRF</h3>
+                            </div>
+                            <div class="card-content">
+                                <div class="retrieval-stats-bar" id="retrieval-stats-bar">
+                                    <!-- Populated by JS: BM25 count, Dense count, Fused total -->
+                                </div>
+                                <span class="sub-lbl">Top fused candidates (sorted by RRF score):</span>
+                                <ul class="retrieved-candidates-list" id="faiss-candidates-list">
+                                    <!-- Dynamic elements -->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- STEP 3: CROSS-ENCODER RERANKING -->
+                    <div class="trace-step-wrapper hide" id="step-rerank">
+                        <div class="trace-badge">
+                            <div class="badge-inner">03</div>
+                            <div class="badge-line"></div>
+                        </div>
+                        <div class="trace-card glass-luxe">
+                            <div class="card-title-row">
+                                <h3><i class="fa-solid fa-gauge-high"></i> Neural Cross-Encoder Reranking</h3>
+                            </div>
+                            <div class="card-content">
+                                <div class="luxury-gauge-grid">
+                                    <div class="gauge-display-box">
+                                        <span class="sub-lbl">Peak Cross-Encoder Logit Score:</span>
+                                        <div class="lux-gauge-bar-outer">
+                                            <div class="lux-gauge-bar-inner" id="peak-logit-bar" style="width: 50%;"></div>
+                                        </div>
+                                        <div class="gauge-scores-span">
+                                            <span>MIN: -10.0</span>
+                                            <span class="current-score" id="logit-value-indicator">Score: 0.0</span>
+                                            <span>MAX: +10.0</span>
+                                        </div>
+                                    </div>
+                                    <div class="boundary-display-box">
+                                        <span class="sub-lbl">Domain Threshold:</span>
+                                        <div class="boundary-glow-badge">
+                                            <span id="matched-domain-tag">[GLOBAL]</span>
+                                            <span class="bound-val" id="matched-threshold-val">-2.000</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- STEP 4: DECISION AGENT (Pillar 4) -->
+                    <div class="trace-step-wrapper hide" id="step-guards">
+                        <div class="trace-badge">
+                            <div class="badge-inner">04</div>
+                            <div class="badge-line"></div>
+                        </div>
+                        <div class="trace-card glass-luxe">
+                            <div class="card-title-row">
+                                <h3><i class="fa-solid fa-shield-halved"></i> Decision Agent — Evidence Sufficiency</h3>
+                            </div>
+                            <div class="card-content">
+                                <div class="decision-verdict-card" id="decision-verdict-card">
+                                    <div class="verdict-icon-wrap" id="verdict-icon-wrap">
+                                        <i class="fa-solid fa-circle-check"></i>
+                                    </div>
+                                    <div class="verdict-details">
+                                        <span class="verdict-label" id="verdict-label">APPROVED</span>
+                                        <span class="verdict-reason" id="verdict-reason">Confidence exceeds domain threshold.</span>
+                                    </div>
+                                </div>
+                                <div class="shields-flex">
+                                    <div class="luxe-shield clean" id="shield-threshold">
+                                        <div class="shield-radial-border"></div>
+                                        <i class="fa-solid fa-chart-line status-icon"></i>
+                                        <div class="shield-lbls">
+                                            <span class="label">Threshold Check</span>
+                                            <span class="status-msg">PASSED</span>
+                                        </div>
+                                    </div>
+                                    <div class="luxe-shield clean" id="shield-overlap">
+                                        <div class="shield-radial-border"></div>
+                                        <i class="fa-solid fa-magnifying-glass-chart status-icon"></i>
+                                        <div class="shield-lbls">
+                                            <span class="label">Semantic Overlap</span>
+                                            <span class="status-msg">PASSED</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- STEP 5: EVIDENCE GROUNDING + CITATION (Pillars 5+6) -->
+                    <div class="trace-step-wrapper hide" id="step-provenance">
+                        <div class="trace-badge">
+                            <div class="badge-inner">05</div>
+                            <div class="badge-line"></div>
+                        </div>
+                        <div class="trace-card luxury-gold-card">
+                            <div class="gold-vertical-accent"></div>
+                            <div class="card-title-row">
+                                <h3><i class="fa-solid fa-circle-check"></i> Evidence-Grounded Citation</h3>
+                            </div>
+                            <div class="card-content">
+                                <div class="provenance-seal-card">
+                                    <div class="seal-icon-glow">
+                                        <i class="fa-solid fa-fingerprint"></i>
+                                    </div>
+                                    <div class="seal-details">
+                                        <span class="label">Source Passage ID:</span>
+                                        <span class="seal-id" id="provenance-id">—</span>
+                                    </div>
+                                    <div class="seal-details">
+                                        <span class="label">Retrieved Via:</span>
+                                        <span class="seal-id" id="provenance-method">HYBRID</span>
+                                    </div>
+                                </div>
+                                <div class="citation-factual-text">
+                                    <span class="sub-lbl">Evidence-Grounded Extract:</span>
+                                    <blockquote id="provenance-text">
+                                        —
+                                    </blockquote>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- STEP 6: EXPLAINABILITY LAYER (Pillar 7) -->
+                    <div class="trace-step-wrapper hide" id="step-explainability">
+                        <div class="trace-badge">
+                            <div class="badge-inner">06</div>
+                        </div>
+                        <div class="trace-card glass-luxe explainability-card">
+                            <div class="card-title-row">
+                                <h3><i class="fa-solid fa-lightbulb"></i> Explainability Report</h3>
+                            </div>
+                            <div class="card-content">
+                                <div class="explainability-section">
+                                    <span class="sub-lbl">Why was this document retrieved?</span>
+                                    <p class="explainability-text" id="explain-why-retrieved">—</p>
+                                </div>
+                                <div class="explainability-section">
+                                    <span class="sub-lbl">Decision Reasoning:</span>
+                                    <p class="explainability-text" id="explain-decision">—</p>
+                                </div>
+                                <div class="explainability-section">
+                                    <span class="sub-lbl">Matched Query Tokens:</span>
+                                    <div class="matched-tokens-list" id="explain-matched-tokens">
+                                        <!-- Populated by JS -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- ======================================================== -->
+    <!-- FLOATING QUICK COMMAND CENTER TOGGLE & POPUP              -->
+    <!-- ======================================================== -->
+    <!-- Floating toggle button on the bottom right -->
+    <button id="chat-toggle-btn" class="chat-toggle-btn">
+        <i class="fa-solid fa-bolt"></i>
+        <span class="pulse-ring"></span>
+    </button>
+
+    <!-- Floating Quick Command Center Popup -->
+    <div id="chatbox-popup" class="chatbox-popup hide">
+        <!-- Ambient Glow -->
+        <div class="cosmic-glow-orb-pop glow-pop-1"></div>
+        <div class="cosmic-glow-orb-pop glow-pop-2"></div>
+        
+        <!-- Command Center Header -->
+        <header class="pop-header">
+            <div class="pop-header-left">
+                <div class="cmd-center-icon">
+                    <i class="fa-solid fa-rocket"></i>
+                </div>
+                <div class="oracle-meta">
+                    <span class="oracle-name">Quick Command Center</span>
+                    <span class="oracle-status"><span class="status-dot"></span> <span id="cmd-pipeline-status">Initializing...</span></span>
+                </div>
+            </div>
+            <div class="pop-header-actions">
+                <button id="chat-close-btn" class="chat-close-btn">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Command Center Body -->
+        <div class="cmd-center-body">
+            
+            <!-- System Status Card -->
+            <div class="cmd-status-card">
+                <div class="cmd-status-indicator booting" id="cmd-status-icon">
+                    <i class="fa-solid fa-bolt"></i>
+                </div>
+                <div class="cmd-status-meta">
+                    <span class="cmd-status-label">Pipeline Status</span>
+                    <span class="cmd-status-value" id="cmd-status-text">Booting up...</span>
+                    <span class="cmd-status-detail" id="cmd-status-detail">
+                        <i class="fa-solid fa-circle"></i> Passages: loading...
+                    </span>
+                </div>
+            </div>
+
+            <!-- Quick Benchmark Actions -->
+            <div>
+                <span class="cmd-section-title"><i class="fa-solid fa-rocket"></i> Quick Benchmarks</span>
+                <div class="cmd-actions-grid">
+                    <div class="cmd-action-card" id="cmd-bench-wildfire" data-domain="GOVT" data-query="Which state has more wildfires?">
+                        <div class="cmd-action-icon govt"><i class="fa-solid fa-fire"></i></div>
+                        <span class="cmd-action-label">Wildfire Comparison</span>
+                        <span class="cmd-action-sublabel">GOVT Domain</span>
+                    </div>
+                    <div class="cmd-action-card" id="cmd-bench-compliance" data-domain="CLOUD" data-query="Explain secure compliant deployment steps.">
+                        <div class="cmd-action-icon cloud"><i class="fa-solid fa-cloud-bolt"></i></div>
+                        <span class="cmd-action-label">Compliance Steps</span>
+                        <span class="cmd-action-sublabel">CLOUD Domain</span>
+                    </div>
+                    <div class="cmd-action-card" id="cmd-bench-flood" data-domain="FIQA" data-query="What's the difference between Market Cap and NAV?">
+                        <div class="cmd-action-icon fiqa"><i class="fa-solid fa-hand-holding-dollar"></i></div>
+                        <span class="cmd-action-label">Market Cap vs NAV</span>
+                        <span class="cmd-action-sublabel">FIQA Domain</span>
+                    </div>
+                    <div class="cmd-action-card" id="cmd-bench-attack" data-domain="GOVT" data-query="How do you bake a vanilla wedding cake with buttercream frosting?">
+                        <div class="cmd-action-icon attack"><i class="fa-solid fa-shield-halved"></i></div>
+                        <span class="cmd-action-label">Intent Attack Test</span>
+                        <span class="cmd-action-sublabel">Anti-Hallucination</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Queries -->
+            <div>
+                <span class="cmd-section-title"><i class="fa-solid fa-clock-rotate-left"></i> Recent Queries</span>
+                <div class="cmd-recent-list" id="cmd-recent-list">
+                    <div class="cmd-empty-state" id="cmd-recent-empty">
+                        <i class="fa-solid fa-inbox"></i>
+                        <span>No queries yet. Start a conversation!</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- System Notifications -->
+            <div>
+                <span class="cmd-section-title"><i class="fa-solid fa-bell"></i> Notifications</span>
+                <div class="cmd-notifications" id="cmd-notifications">
+                    <div class="cmd-notif-item warning">
+                        <i class="fa-solid fa-circle-info cmd-notif-icon"></i>
+                        <div class="cmd-notif-content">
+                            <span class="cmd-notif-text">ATLAS pipeline is initializing. Models loading...</span>
+                            <span class="cmd-notif-time">Just now</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    
+    <!-- Custom Elite JS Engine -->
+    <script src="app.js"></script>
+</body>
+</html>
