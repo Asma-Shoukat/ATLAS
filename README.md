@@ -2,7 +2,9 @@
 <p align="center"><strong>A 7-Pillar Hybrid RAG System for Multi-Domain Conversational Information Retrieval<br/>with Anti-Hallucination Guardrails and Full Pipeline Explainability</strong></p>
 
 <p align="center">
-  <img src="docs/screenshots/atlas_main_dashboard.png" width="100%" alt="ATLAS Dashboard" />
+  <img src="https://github.com/user-attachments/assets/71819e5f-ba03-4ba3-bcb8-d08ab79b5376"
+       width="100%"
+       alt="ATLAS Screenshot" />
 </p>
 
 <p align="center">
@@ -59,14 +61,22 @@ User Query
 
 ## Screenshots
 
-<table>
+<table align="center">
   <tr>
     <td align="center"><strong>Pipeline Auditor — Live Telemetry</strong></td>
     <td align="center"><strong>Anti-Hallucination Interception</strong></td>
   </tr>
   <tr>
-    <td><img src="docs/screenshots/atlas_pipeline_trace.png" width="400" alt="Pipeline Trace" /></td>
-    <td><img src="docs/screenshots/atlas_interception.png" width="400" alt="Interception" /></td>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/e865c5de-8d63-4d4e-b37f-0b62184197ae"
+           width="450"
+           alt="Pipeline Auditor - Live Telemetry" />
+    </td>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/7b607280-860b-4e4c-af36-b58c2cb0df9f"
+           width="450"
+           alt="Anti-Hallucination Interception" />
+    </td>
   </tr>
 </table>
 
