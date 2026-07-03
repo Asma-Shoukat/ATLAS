@@ -64,8 +64,8 @@ User Query
 <table align="center">
   <tr>
     <td align="center"><strong>Pipeline Auditor — Live Telemetry</strong></td>
-    <td align="center"><strong>Anti-Hallucination Interception</strong></td>
-    <td align="center"><strong>Evidence & Explainability</strong></td>
+    <td align="center"><strong>step: 3 & 4 Interception</strong></td>
+    <td align="center"><strong>Step: 5 & 6</strong></td>
   </tr>
   <tr>
     <td align="center">
@@ -76,12 +76,12 @@ User Query
     <td align="center">
       <img src="https://github.com/user-attachments/assets/7b607280-860b-4e4c-af36-b58c2cb0df9f"
            width="300"
-           alt="Anti-Hallucination Interception" />
+           alt="Step: 3 & 4" />
     </td>
     <td align="center">
       <img src="https://github.com/user-attachments/assets/c7273e6e-9556-47c9-a2a2-a35bcd9151ce"
            width="300"
-           alt="Evidence & Explainability" />
+           alt="Step: 5 & 6" />
     </td>
   </tr>
 </table>
@@ -89,7 +89,7 @@ User Query
 <table align="center">
   <tr>
     <td align="center"><strong>Anti-Hallucination Interception</strong></td>
-    <td align="center"><strong>Failure Diagnostics</strong></td>
+    <td align="center"><strong>Evidence & Explainability</strong></td>
   </tr>
   <tr>
     <td align="center">
@@ -100,7 +100,7 @@ User Query
     <td align="center">
       <img src="https://github.com/user-attachments/assets/8cca32db-6053-4c44-8013-826d0234e32d"
            width="450"
-           alt="Failure Diagnostics" />
+           alt="Evidence & Explainability" />
     </td>
   </tr>
 </table>
@@ -212,10 +212,5 @@ ATLAS/
 
 ---
 
-## Authors
 
-**Asma Shoukat** (241418) — Backend search architecture, hybrid retrieval engine, cross-encoder integration, domain threshold calibration.
 
-**Amna-tuz-Zahra** (241382) — Dialogue state tracking, coreference resolution, glassmorphic UI with live pipeline telemetry, sliding-window sentence extractor.
-
-Department of Creative Technologies, Air University, Islamabad — Information Retrieval, June 2026.
