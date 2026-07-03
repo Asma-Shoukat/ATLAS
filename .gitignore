@@ -43,5 +43,10 @@ build/
 # Jupyter
 .ipynb_checkpoints/
 
+# Presentations & Non-technical
+*.pptx
+ECHO_Launcher.exe
+ECHO_Launcher.spec
+
 # Gemini / Antigravity IDE
 .gemini/
