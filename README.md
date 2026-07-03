@@ -65,21 +65,45 @@ User Query
   <tr>
     <td align="center"><strong>Pipeline Auditor — Live Telemetry</strong></td>
     <td align="center"><strong>Anti-Hallucination Interception</strong></td>
+    <td align="center"><strong>Evidence & Explainability</strong></td>
   </tr>
   <tr>
     <td align="center">
       <img src="https://github.com/user-attachments/assets/e865c5de-8d63-4d4e-b37f-0b62184197ae"
-           width="450"
+           width="300"
            alt="Pipeline Auditor - Live Telemetry" />
     </td>
     <td align="center">
       <img src="https://github.com/user-attachments/assets/7b607280-860b-4e4c-af36-b58c2cb0df9f"
-           width="450"
+           width="300"
            alt="Anti-Hallucination Interception" />
+    </td>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/c7273e6e-9556-47c9-a2a2-a35bcd9151ce"
+           width="300"
+           alt="Evidence & Explainability" />
     </td>
   </tr>
 </table>
 
+<table align="center">
+  <tr>
+    <td align="center"><strong>Anti-Hallucination Interception</strong></td>
+    <td align="center"><strong>Failure Diagnostics</strong></td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/8117d068-e4fa-4408-874b-d2ce587aa0b4"
+           width="450"
+           alt="Anti-Hallucination Interception" />
+    </td>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/8cca32db-6053-4c44-8013-826d0234e32d"
+           width="450"
+           alt="Failure Diagnostics" />
+    </td>
+  </tr>
+</table>
 ---
 
 ## Installation & Setup
