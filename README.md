@@ -64,7 +64,7 @@ User Query
 <table align="center">
   <tr>
     <td align="center"><strong>Pipeline Auditor — Live Telemetry</strong></td>
-    <td align="center"><strong>step: 3 & 4 Interception</strong></td>
+    <td align="center"><strong>step: 3 & 4 </strong></td>
     <td align="center"><strong>Step: 5 & 6</strong></td>
   </tr>
   <tr>
