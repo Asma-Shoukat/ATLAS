@@ -1,10 +1,9 @@
-<p align="center">
-  <img src="docs/screenshots/atlas_main_dashboard.png" width="100%" alt="ATLAS — Adaptive Trustworthy Language-Augmented Search" />
-</p>
+<h1 align="center"><strong>ATLAS — Adaptive Trustworthy Language-Augmented Search</strong></h1>
+<p align="center"><strong>A 7-Pillar Hybrid RAG System for Multi-Domain Conversational Information Retrieval<br/>with Anti-Hallucination Guardrails and Full Pipeline Explainability</strong></p>
 
-<h1 align="center">ATLAS</h1>
-<p align="center"><strong>Adaptive Trustworthy Language-Augmented Search</strong></p>
-<p align="center">A 7-Pillar Hybrid RAG System for Multi-Domain Conversational Information Retrieval</p>
+<p align="center">
+  <img src="docs/screenshots/atlas_main_dashboard.png" width="100%" alt="ATLAS Dashboard" />
+</p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/Python-3.10%2B-blue?logo=python&logoColor=white" />
