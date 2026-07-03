@@ -20,7 +20,7 @@
 
 **ATLAS** is a Retrieval-Augmented Generation (RAG) system designed for multi-turn conversational search across heterogeneous document domains. It implements a **7-pillar architecture** ensuring every answer is evidence-grounded, every decision is explainable, and every out-of-domain query is safely intercepted.
 
-Built for the **IBM Research Mt-RAG (SemEval 2026)** benchmark, it processes **366,479 passages** spanning Government policy, Finance, Cloud technology, and Wikipedia — with sub-second retrieval on CPU hardware.
+Built for the **IBM Research Mt-RAG (SemEval 2026)** benchmark — **366,479 passages** across Government, Finance, Cloud, and Wikipedia domains with sub-second retrieval on CPU.
 
 | Problem | Solution |
 |---|---|
@@ -33,15 +33,11 @@ Built for the **IBM Research Mt-RAG (SemEval 2026)** benchmark, it processes **3
 
 ## System Architecture
 
-<p align="center">
-  <img src="docs/screenshots/atlas_architecture.png" width="85%" alt="7-Pillar Pipeline Architecture" />
-</p>
-
 ```
 User Query
     │
     ├── Pillar 1–2: Conversational Understanding + Query Rewriting
-    │         (Dual-channel pronoun resolution)
+    │         Dual-channel pronoun resolution
     │
     ├── Pillar 3: Hybrid Retrieval
     │         BM25 (Top 50) + FAISS Dense (Top 50) → Reciprocal Rank Fusion (k=60)
@@ -64,17 +60,16 @@ User Query
 
 ## Screenshots
 
-**Pipeline Auditor** — Real-time 6-step telemetry trace showing query rewriting, retrieval stats, reranking scores, decision verdict, evidence citation, and explainability report.
-
-<p align="center">
-  <img src="docs/screenshots/atlas_pipeline_trace.png" width="100%" alt="Pipeline Trace" />
-</p>
-
-**Anti-Hallucination Interception** — Out-of-domain queries are safely intercepted with detailed failure diagnostics instead of fabricated answers.
-
-<p align="center">
-  <img src="docs/screenshots/atlas_interception.png" width="100%" alt="Anti-Hallucination Interception" />
-</p>
+<table>
+  <tr>
+    <td align="center"><strong>Pipeline Auditor — Live Telemetry</strong></td>
+    <td align="center"><strong>Anti-Hallucination Interception</strong></td>
+  </tr>
+  <tr>
+    <td><img src="docs/screenshots/atlas_pipeline_trace.png" width="400" alt="Pipeline Trace" /></td>
+    <td><img src="docs/screenshots/atlas_interception.png" width="400" alt="Interception" /></td>
+  </tr>
+</table>
 
 ---
 
@@ -97,7 +92,7 @@ pip install torch==2.1.2 --index-url https://download.pytorch.org/whl/cpu
 pip install SentenceTransformers==2.5.1 faiss-cpu==1.7.4 rank-bm25==0.2.2 Flask==3.0.2 flask-cors==4.0.0 numpy==1.26.4
 ```
 
-> **Note:** Corpus data files (`Corpora/`, `Cache_Storage/`, `Conversations/`) are not included due to size (~1.2 GB). Contact the authors for dataset access.
+> Corpus data files (`Corpora/`, `Cache_Storage/`, `Conversations/`) are not included due to size (~1.2 GB). Contact the authors for dataset access.
 
 ---
 
@@ -109,9 +104,9 @@ Double-click **`run.bat`** in the project root. It will:
 2. Launch the Flask backend in a background console
 3. Open the dashboard (`frontend/index.html`) in your browser
 
-Wait for the pipeline auditor to show **"ATLAS PIPELINE ACTIVE"** before submitting queries.
+Wait for **"ATLAS PIPELINE ACTIVE"** in the pipeline auditor before submitting queries.
 
-**Running Tests** — With the backend running, open a separate terminal:
+**Running Tests** — with the backend running, open a separate terminal:
 
 ```bash
 venv\Scripts\python.exe tests\test_4pillars_wildfire.py    # Multi-turn wildfire scenario
@@ -133,11 +128,7 @@ ATLAS/
 │   ├── style.css                  # Luxury CSS with cosmic theme
 │   ├── app.js                     # Telemetry rendering & chat engine
 │   └── glowing_orb.png            # Background asset
-├── tests/
-│   ├── test_search.py             # Multi-domain retrieval test
-│   ├── test_4pillars_wildfire.py  # Conversational wildfire scenario
-│   ├── test_drifts.py             # Pronoun/context drift test
-│   └── test_fiqa_nav.py           # Financial domain entity guard
+├── tests/                         # Search, wildfire, drift, and NAV tests
 ├── scripts/                       # Diagnostic & data inspection utilities
 ├── docs/
 │   ├── ATLAS_Academic_Report.md   # Academic evaluation report
@@ -151,8 +142,6 @@ ATLAS/
 ---
 
 ## Dataset
-
-Evaluated on the **IBM Research Mt-RAG (SemEval 2026)** benchmark:
 
 | Domain | Source | Passages |
 |---|---|---|
